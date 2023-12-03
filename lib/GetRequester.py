@@ -7,7 +7,16 @@ class GetRequester:
         self.url = url
 
     def get_response_body(self):
-        pass
+        response = requests.get(self.url)
+        return response.text
 
     def load_json(self):
-        pass
+        return json.loads(self.get_response_body())
+        
+
+
+if __name__ == "__main__":
+    url = "https://api.github.com/search/repositories?q=language:python&sort=stars"
+    requester = GetRequester(url)
+    print(requester.get_response_body())
+
